@@ -1,0 +1,7 @@
+input_dir: "./image"
+output_dir: "./output_eval"
+target_w: 1200
+target_h: 1920
+save_roundtrip_images: true
+
+best_method: "Lanczos4"
