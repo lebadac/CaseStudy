@@ -15,7 +15,7 @@ A modular Python-based pipeline for batch-processing images using various interp
 **Conclusion**: Selected interpolation-based approach as the optimal balance of quality and performance for the given resolution requirements.
 
 ## 3. Development Workflow
-The project was completed in approximately **2 hours 15 minutes**, evolving through the following stages:
+The project was completed in approximately **2 hours 5 minutes**, evolving through the following stages:
 
 | Phase | Activities | Time Estimate |
 | :--- | :--- | :--- |
@@ -27,7 +27,7 @@ The project was completed in approximately **2 hours 15 minutes**, evolving thro
 | **Modular Refactor** | Restructuring code into the `src/` library for better maintainability. | 15 mins |
 | **Documentation** | Writing comprehensive `README.md` and `REPORT.md` instructions. | 30 mins |
 | **Check all repo** | Check carefully all repo and repair all errors | 30 mins |
-| **Total** | | **~2 hours 15 minutes** |
+| **Total** | | **~2 hours 5 minutes** |
 
 ---
 
