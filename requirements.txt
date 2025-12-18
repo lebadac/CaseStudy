@@ -2,3 +2,7 @@ opencv-python
 matplotlib
 PyYAML
 scikit-image
+Pillow
+diffusers
+transformers
+torch

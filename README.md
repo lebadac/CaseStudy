@@ -1,6 +1,6 @@
-# Case Study: Image Interpolation
+# Case Study: Image Resizing Using Interpolation and AI Fill
 
-This project provides tools for resizing and evaluating images using various OpenCV interpolation methods.
+This project provides tools for resizing and evaluating images using OpenCV interpolation methods and AI fill method.
 
 ## Prerequisites
 
@@ -31,17 +31,20 @@ The project logic is organized as follows:
     -   **`src/evaluate_methods.py`**: Benchmarking logic using PSNR and SSIM metrics.
     -   **`src/resize_methods.py`**: Defines the OpenCV interpolation methods.
     -   **`src/utils_io.py`**: Utility functions for file I/O and config loading.
+    -   **`src/plot_compare.py`**: Plot comparison images.
 
 ## Configuration
 
 Control the behavior via `config.yml`:
 
 ```yaml
-best_method: "Lanczos4"
+best_method: "AI_Fill"
 target_w: 1200
 target_h: 1920
 input_dir: "./image"
 output_best_dir: "./output/best"
+output_all_dir: "./output/all_methods"
+resize_mode: 1
 ```
 
 ## Usage
@@ -64,7 +67,7 @@ Follow these steps for the complete workflow:
     ```
 
 4.  **Step 4: Edit Config**
-    Based on the evaluation results, update `best_method` in `config.yml` (e.g., `best_method: "Lanczos4"`).
+    Based on the evaluation results, update `best_method` in `config.yml` (e.g., `best_method: "AI_Fill"`).
 
 5.  **Step 5: Output Run with main.py**
     To process and save images using your selected "best" method:

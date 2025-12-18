@@ -1,7 +1,11 @@
 input_dir: "./image"
 output_dir: "./output_eval"
+output_all_dir: "./output_all_methods"
+output_best_dir: "./output_best_methods"
+
+resize_mode: 1
 target_w: 1200
 target_h: 1920
 save_roundtrip_images: true
 
-best_method: "Lanczos4"
+best_method: "AI_Fill"

@@ -6,7 +6,7 @@ import cv2
 import yaml
 
 from src.utils_io import ensure_dir, valid_image_file, load_image_bgr
-from src.resize_methods import resize_with_methods
+from src.resize_methods import resize_with_methods, resize_with_fill
 from src.utils_io import load_config
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -22,6 +22,14 @@ def save_images_dict(images: Dict[str, "cv2.Mat"], out_dir: str, prefix: str = "
         ok = cv2.imwrite(out_path, img_bgr)
         logging.info(f"Saved: {out_path}" if ok else f"Failed to write: {out_path}")
 
+def save_pil_image(pil_img, out_dir: str, filename: str):
+    """
+    Save a PIL image to the specified directory.
+    """
+    ensure_dir(out_dir)
+    out_path = os.path.join(out_dir, filename)
+    pil_img.save(out_path)
+    logging.info(f"Saved: {out_path}")
 
 def main():
     """
@@ -34,6 +42,7 @@ def main():
 
     target_w = int(cfg.get("target_w", 1200))
     target_h = int(cfg.get("target_h", 1920))
+    resize_mode = int(cfg.get("resize_mode", 1))  # 1 = classic, 2 = AI
 
     if not os.path.exists(input_dir):
         logging.error(f"Input directory not found: {input_dir}")
@@ -49,11 +58,18 @@ def main():
 
         try:
             img_bgr = load_image_bgr(image_path)
-
-            resized = resize_with_methods(img_bgr, target_w, target_h)
-
-            # Save all methods (for fair comparison + evaluation)
-            save_images_dict(resized, out_all, prefix=f"{name}_")
+            
+            if resize_mode == 1:
+                # Classic resize methods
+                resized_dict = resize_with_methods(img_bgr, target_w, target_h)
+                save_images_dict(resized_dict, out_all, prefix=f"{name}_")
+            elif resize_mode == 2:
+                # AI fill method
+                ai_filled_pil = resize_with_fill(img_bgr, target_w, target_h)
+                save_pil_image(ai_filled_pil, out_all, filename=f"{name}_AI_fill.jpg")
+            else:
+                logging.error(f"Unknown resize_mode: {resize_mode}")
+                continue
 
             processed += 1
 
